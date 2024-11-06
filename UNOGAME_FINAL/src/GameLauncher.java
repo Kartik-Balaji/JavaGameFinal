@@ -86,16 +86,11 @@ class Connect4Game extends JFrame {
 
     private boolean checkWin(int row, int col) {
         Color currentColor = board[row][col].getBackground();
-        // Horizontal, Vertical, and Diagonal checks go here (as in the previous code)
-        // ...
         return false;
     }
 }
 
-// UNO Game Implementation
-// (Code for UnoGame remains the same as previously provided)
 
-// TicTacToe Game Implementation
 class TicTacToeGame extends JFrame {
     private final JButton[][] board = new JButton[3][3];
     private boolean isPlayer1Turn = true;
@@ -105,7 +100,7 @@ class TicTacToeGame extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout(3, 3));
 
-        // Initialize Tic-Tac-Toe board
+        
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 board[row][col] = new JButton("");
@@ -124,7 +119,7 @@ class TicTacToeGame extends JFrame {
 
     private void makeMove(int row, int col) {
         if (!board[row][col].getText().equals("")) {
-            return; // Invalid move
+            return; 
         }
 
         board[row][col].setText(isPlayer1Turn ? "X" : "O");
@@ -147,7 +142,7 @@ class TicTacToeGame extends JFrame {
     private boolean checkWin() {
         String currentPlayerSymbol = isPlayer1Turn ? "X" : "O";
 
-        // Check rows, columns, and diagonals
+        
         for (int i = 0; i < 3; i++) {
             if (board[i][0].getText().equals(currentPlayerSymbol) &&
                     board[i][1].getText().equals(currentPlayerSymbol) &&
@@ -158,7 +153,7 @@ class TicTacToeGame extends JFrame {
                     board[2][i].getText().equals(currentPlayerSymbol)) return true;
         }
 
-        // Check diagonals
+        
         if (board[0][0].getText().equals(currentPlayerSymbol) &&
                 board[1][1].getText().equals(currentPlayerSymbol) &&
                 board[2][2].getText().equals(currentPlayerSymbol)) return true;
@@ -213,7 +208,7 @@ class UnoGame extends JFrame {
     }
 
     private void initializeGame() {
-        // Create deck
+        
         for (String color : COLORS) {
             for (String value : VALUES) {
                 if (value.equals("Wild") || value.equals("Wild+4")) {
@@ -224,33 +219,28 @@ class UnoGame extends JFrame {
             }
         }
 
-        // Shuffle deck
+       
         Collections.shuffle(deck);
 
-        // Deal initial cards
         for (int i = 0; i < 7; i++) {
             player1Hand.add(deck.remove(0));
             player2Hand.add(deck.remove(0));
         }
 
-        // Set initial top card
         do {
             topCard = deck.remove(0);
         } while (topCard.getColor().equals("Black"));
     }
 
     private void createGUI() {
-        // Create player panels
         player1Panel = new JPanel(new FlowLayout());
         player2Panel = new JPanel(new FlowLayout());
         updatePlayerPanels();
 
-        // Create center panel
         centerPanel = new JPanel(new FlowLayout());
         topCardLabel = new JLabel();
         updateTopCardLabel();
 
-        // Create turn label
         turnLabel = new JLabel("Player 1's turn", SwingConstants.CENTER);
         turnLabel.setFont(new Font("Arial", Font.BOLD, 18));
 
